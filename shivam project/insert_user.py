@@ -6,10 +6,10 @@ import mongo_connect as mc
 import telegram_connect as tc
 client = tc.client
 col = mc.db['users']  
-async def main(group_id):
+async def main(group_id,limit):
     count = 0
     try:  
-        async for user in client.iter_participants(group_id,limit=10,aggressive=True):
+        async for user in client.iter_participants(group_id,limit=limit,aggressive=True):
             try:
                 date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
                 # gender = requests.get("https://api.genderize.io/?name={}".format(user.first_name)).json()
