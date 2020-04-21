@@ -51,27 +51,6 @@ class telegram:
             errorgroup = await self.client.get_entity(group_id)  
             print(errorgroup.stringify()) 
         print(count,"- unique users are inserted from group")                        
-    async def insert_user_from_csv(self,file_path,col_name):
-        with open(file_path) as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            inserted_user = 0
-            for row in csv_reader:
-                if row[col_name]:
-                    result = await self.client(functions.contacts.ImportContactsRequest(
-                            contacts=[types.InputPhoneContact(
-                                    client_id=random.randrange(-2**63, 2**63),
-                                    phone=row[col_name],
-                                    first_name='',
-                                    last_name=''
-                            )]
-                    ))
 
-                    if (result.users):
-                        # print(result.users[0].id)
-
-                        if self.insert_user_to_db(result.users[0]):
-                            print(row["firstname"])
-                            inserted_user+=1
-        print(inserted_user,"- unique users are inserted from csv file")             
 
                 
