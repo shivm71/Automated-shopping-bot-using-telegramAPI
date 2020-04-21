@@ -1,0 +1,70 @@
+### Mac ###
+.DS_Store
+
+### Git ###
+*.orig
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.classpath
+.project
+.checkstyle
+.settings/
+*.launch
+
+### NetBeans ###
+nb-configuration.xml
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Maven ###
+work/
+target/
+classes/
+
+### Spring ###
+*.pid
+*.springBeans
+
+### Sigar ###
+native/
+
+### Ephemeral files ###
+src/main/resources/git.properties
+app/log/*.txt
+app/logs/*.txt
+log/*.txt
+logs/*.txt
+
+### GWT ###
+*/.gwt
+*/src/main/webapp/WEB-INF/classes/
+
+### Vault ###
+.vault_token
+.vault-token
+
+### Jrebel ###
+rebel*.xml
+
+### pycache ###
+__pycache__/
+
+### Virtual Env ###
+venv/
+env/
+app/venv
+app/env
+
+### Ignore generated files ###
+app/logging.env.conf
+app/version.json
