@@ -70,7 +70,7 @@ class telegram:
                         # print(result.users[0].id)
 
                         if self.insert_user_to_db(result.users[0]):
-                            print(row[col_name])
+                            print(row["firstname"])
                             inserted_user+=1
         print(inserted_user,"- unique users are inserted from csv file")             
 
