@@ -5,7 +5,7 @@ import asyncio
 api_id = '1201180'
 api_hash = '1b3d4bdf22f0b52af3f1df6db89b62b7'
 phone = '+917828871116'
-username = 'Shivam Shah'
+username = 'tel_cloud'
 client = TelegramClient(username, api_id, api_hash)
 client.connect()
 user = [1057346232,689402190,-477045489,185209613,-481982874,902231413]
