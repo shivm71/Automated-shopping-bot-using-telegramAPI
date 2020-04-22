@@ -11,7 +11,7 @@ client.connect()
 user = [1057346232,689402190,-477045489,185209613,-481982874,902231413]
 async def main():
     for i in [902231413,-477045489]:
-        # await client.send_file(i,"download.jpg")
+        # await client.send_file(i,"../resource/download.jpg")
         await client.send_message(i,
          'Some <b>bold</b> and <i>italic</i> text \n'
          'An <a href="https://example.com">URL</a>'
