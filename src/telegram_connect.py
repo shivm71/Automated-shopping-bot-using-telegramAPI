@@ -1,7 +1,23 @@
 from telethon import TelegramClient,sync
-api_id = '1201180'
-api_hash = '1b3d4bdf22f0b52af3f1df6db89b62b7'
-phone = '+917828871116'
-username = 'tel_cloud'
+import yaml
+
+num = 5  #update this number and you can get any session from the created session
+
+credentials = yaml.load(open('../config/application.yml'), Loader=yaml.FullLoader)
+api_id = credentials['tele'+str(num)]['api_id']
+api_hash = credentials['tele'+str(num)]['api_hash']
+phone = credentials['tele'+str(num)]['phone']
+username = credentials['tele'+str(num)]['username']
+
 client = TelegramClient(username, api_id, api_hash)
 client.connect()
+
+if not client.is_user_authorized():
+    client.send_code_request(phone)
+    try:
+        client.sign_in(phone, input('Enter the code: '))
+    except Exception:
+        client.sign_in(password=input('Password: '))
+
+me = client.get_me()
+print(me)
