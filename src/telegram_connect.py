@@ -6,7 +6,7 @@ api_id = '1364667'
 api_hash = 'e1197805b1411dc174b7d813ba1901dc'
 phone = '+13105962190'
 session_name = 'tele1'
-filepath = 'client.yml'
+filepath = '../application/client.yml'
 client = TelegramClient(session_name, api_id, api_hash)
 
 with client:
