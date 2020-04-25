@@ -10,7 +10,7 @@ import sys
 collection = mc.db["users"]
 
 telegram_obj = telegram(tc.client,collection)
-async def insert_user_from_csv(file_path, rows_to_skip,col_name = "phone",):
+async def insert_user_from_csv(file_path, rows_to_skip,col_name = "phone"):
     client = tc.client 
     session_name = tc.session_name 
     with open(file_path) as csv_file:
