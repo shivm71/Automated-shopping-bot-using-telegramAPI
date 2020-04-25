@@ -2,10 +2,10 @@ from telethon import TelegramClient,sync
 import yaml
 import time
 
-api_id = '1364667'
-api_hash = 'e1197805b1411dc174b7d813ba1901dc'
-phone = '+13105962190'
-session_name = 'tele1'
+api_id = '1187361'
+api_hash = 'a60450fa5b2f6ad89aa0b936d72731df'
+phone = '+13156780543'
+session_name = 'tele10'
 filepath = '../config/application.yml'
 client = TelegramClient(session_name, api_id, api_hash)
 
