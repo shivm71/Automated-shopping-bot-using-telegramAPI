@@ -18,7 +18,7 @@ async def insert_user_from_csv(file_path, rows_to_skip,col_name = "phone",):
         for i in range(int(rows_to_skip)):
             next(csv_reader)
         inserted_user = 0
-        count = 0
+        count = rows_to_skip
         print("Starting pushing data from csv to mongo-")
         for row in csv_reader:
             if row[col_name]:
@@ -35,16 +35,20 @@ async def insert_user_from_csv(file_path, rows_to_skip,col_name = "phone",):
                         ))
                         break
                     except errors.FloodWaitError as e:
-                        print('FloodWaitError for session:', session_name, ' time: ', e.seconds)
+                        print('FloodWaitError for session:', session_name, ' time:', e.seconds)
                         client,session_name = await tc.get_next_client(client,session_name,e.seconds)
-
-                if (result.users and result.users[0].status.was_online.date() > (date.today() - timedelta(days=60))):
-                    print("found user at: ", count, "user_id: ", row['user_id'])
-                    if (result.users[0].first_name is None):
-                        result.users[0].first_name = row['firstname']
-                        result.users[0].email = row['email']
-                    if telegram.insert_user_to_db(telegram_obj,result.users[0]):
-                        inserted_user+=1
+                try:
+                    if (result.users):
+                        user = result.users[0]
+                        if (hasattr(user.status,'was_online') and user.status.was_online.date() > (date.today() - timedelta(days=60))):
+                            print("found user at:", count, "user_id:", row['user_id'])
+                            user.email = row['email']
+                            if (user.first_name is None):
+                                user.first_name = row['firstname']
+                            if telegram.insert_user_to_db(telegram_obj,user):
+                                inserted_user+=1
+                except Exception as e:
+                    print("Exception after fetching user",e)
     print(inserted_user,"- unique users are inserted from csv file")
 
 def main(rows_to_skip):
