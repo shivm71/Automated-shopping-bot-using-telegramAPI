@@ -1,17 +1,12 @@
-from telethon import sync ,functions,types
-import requests
-from pymongo import MongoClient
 from datetime import datetime
-import mongo_connect as mc
-import telegram_connect as tc
-import csv
-import random
 
 class telegram:
     def __init__(self,client,col):
         self.client = client
         self.col = col
         pass
+
+
     def insert_user_to_db(self,user): 
         try:
             date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
@@ -24,21 +19,24 @@ class telegram:
                 "userinfo":{
                             "firstname":user.first_name,
                             "lastname":user.last_name,
-                            "gender":"gender['gender']",
+                            "email":user.email,
+                            "gender":"",
                             "age":"",
                             "mobile_no":user.phone,
                             "pref_cat":[]
                             },
                 "created":date,
-                "updated":None,
+                "updated":date,
                 "access_hash":user.access_hash,
                 "invite_status":False,
                 "membership_status":False,
             })
             return True
-        except:
-            print("duplicate")
+        except Exception as e:
+            print('Not able to insert into mongo, Exception:',e)
             return False
+
+
     async def insert_user_from_group(self,group_id,limit):
         count = 0
         try:  
