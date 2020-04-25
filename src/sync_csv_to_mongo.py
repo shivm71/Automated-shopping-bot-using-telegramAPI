@@ -56,4 +56,4 @@ def main(rows_to_skip):
     loop.run_until_complete(insert_user_from_csv("../resource/user.csv",rows_to_skip, "phone"))  # insert_user_from_csv(self,file_path,col_name)
 
 if __name__ == "__main__":
-    main(sys.argv[0])
+    main(sys.argv[1])
