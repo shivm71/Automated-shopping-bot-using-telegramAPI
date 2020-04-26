@@ -7,7 +7,7 @@ class telegram:
         pass
 
 
-    def insert_user_to_db(self,user): 
+    def insert_user_to_db(self,user):
         try:
             date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             # gender = requests.get("https://api.genderize.io/?name={}".format(user.first_name)).json()
@@ -39,15 +39,16 @@ class telegram:
 
     async def insert_user_from_group(self,group_id,limit):
         count = 0
-        try:  
+        try:
             async for user in self.client.iter_participants(group_id,limit=limit,aggressive=True):
+                print(user.id)
+                if not hasattr(user,'email'):
+                   user.email = None
                 if self.insert_user_to_db(user):
                     count+=1
                 pass        
-        except:
-            print(group_id)
-            errorgroup = await self.client.get_entity(group_id)  
-            print(errorgroup.stringify()) 
+        except Exception as e:
+            print("Exception in fetching users from group:",group_id ,"session name:", self.client.session.filename)
         print(count,"- unique users are inserted from group")                        
 
 
