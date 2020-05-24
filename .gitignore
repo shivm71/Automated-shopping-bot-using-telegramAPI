@@ -3,6 +3,8 @@
 
 ### Git ###
 *.orig
+.env/
+
 
 ### IntelliJ IDEA ###
 .idea
