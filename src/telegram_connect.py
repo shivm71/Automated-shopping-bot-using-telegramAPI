@@ -31,20 +31,35 @@ async def get_next_client(client,session_name,wait_time):
                 api_id =  cred[key]["api_id"]
                 api_hash = cred[key]["api_hash"]
                 session_name = key
-                flag = False
-                to_wait = False
-                break
+                client = TelegramClient(session_name, api_id, api_hash)
+                await client.connect()
+                if await client.get_me() is not None:  #check for deactivated account
+                    flag = False
+                    to_wait = False
+                    break
             else:
                 to_wait = True
         if to_wait:
             print("All clients are in Flood wait error")
             print("Reinitializing in {}sec ",format(wait_time))
-            time.sleep(wait_time)  
-        cred = []    
-    client = TelegramClient(session_name, api_id, api_hash)
+            time.sleep(wait_time)
 
-    # with client:
-    #     pass  
-    await client.connect()
     return (client,session_name)
+
+
+async def get_all_client():
+    client_dict = dict()
+    client_list  = list()
+    cred = yaml.load(open(filepath), Loader=yaml.FullLoader)
+    for key in cred:
+        api_id =  cred[key]["api_id"]
+        api_hash = cred[key]["api_hash"]
+        session_name = key
+        client = TelegramClient(session_name, api_id, api_hash)
+        await client.connect()
+        if await client.get_me() :
+            client_dict[key] = client
+            client_list+=[key]
+    return (client_dict,client_list)
+
 

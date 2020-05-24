@@ -3,6 +3,9 @@
 
 ### Git ###
 *.orig
+src/*.session
+.env/
+
 
 ### IntelliJ IDEA ###
 .idea
