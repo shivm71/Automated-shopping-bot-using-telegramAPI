@@ -13,4 +13,5 @@ col.create_index([('telegram_id',1),('invite_status',1),("membership_status",1)]
 col.create_index('created',name = "index3")
 
 col = db['groups']
+
 col.create_index("group_id",unique = True,name = "index1")
