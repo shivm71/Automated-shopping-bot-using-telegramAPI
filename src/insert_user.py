@@ -1,6 +1,6 @@
 import asyncio
 import threading
-from src import database_operations
+import database_operations
 import telegram_connect
 
 

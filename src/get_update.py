@@ -1,7 +1,7 @@
 from telethon import TelegramClient, events, sync 
 import asyncio
 import telegram_connect as tc
-import src.database_operations as database_operations
+import database_operations as database_operations
 
 #@tc.client.on(events.NewMessage)
 # @tc.client.on(events.NewMessage)

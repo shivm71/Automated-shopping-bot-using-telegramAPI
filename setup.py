@@ -7,11 +7,15 @@ db_name = str(input("enter db_name default = telegram   -"))
 uri = "mongodb://%s:%s@%s" % (username, password, host)
 mongoclient = MongoClient(uri,port)
 db = mongoclient[db_name]
-col = db["users"]
+col = db["user_with_uname"]
 col.create_index('telegram_id',unique=True,name = "index1")
 col.create_index([('telegram_id',1),('invite_status',1),("membership_status",1)],name = "index2")
 col.create_index('created',name = "index3")
-
+col = db["user_without_uname"]
+col.create_index('telegram_id',unique=True,name = "index1")
+col.create_index([('telegram_id',1),('invite_status',1),("membership_status",1)],name = "index2")
+col.create_index('created',name = "index3")
 col = db['groups']
-
 col.create_index("group_id",unique = True,name = "index1")
+col = db['fetched_messages']
+col.create_index("message_id",unique = True,name = "index1")

@@ -4,6 +4,8 @@
 ### Git ###
 *.orig
 .env/
+src/*.session
+*.gitignore
 
 
 ### IntelliJ IDEA ###
