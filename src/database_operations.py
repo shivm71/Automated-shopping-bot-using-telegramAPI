@@ -1,5 +1,5 @@
 from datetime import datetime
-from src import mongo_connect  # fetch db
+import mongo_connect  # fetch db
 
 uname = mongo_connect.db["user_with_uname"]
 nouname = mongo_connect.db["user_without_uname"]
