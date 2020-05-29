@@ -5,7 +5,9 @@
 *.orig
 .env/
 src/*.session
-*.gitignore
+.gitignore/
+shivam/
+
 
 
 ### IntelliJ IDEA ###

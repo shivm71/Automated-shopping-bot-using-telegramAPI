@@ -1,8 +1,8 @@
 import asyncio
 from telethon.tl.types import InputPeerUser
-import src.database_operations as database_operations
-import src.mongo_connect as mc
-import src.telegram_connect as tc
+import database_operations
+import mongo_connect as mc
+import telegram_connect as tc
 
 loop = asyncio.get_event_loop()
 offset = 100
