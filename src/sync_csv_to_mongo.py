@@ -6,9 +6,9 @@ from datetime import date, timedelta
 import telegram_connect as tc
 from telethon import errors
 
-from src import database_operations
-from src import mongo_connect as mc
-from src.telegram_main import telegram
+import database_operations
+import mongo_connect as mc
+from telegram_main import telegram
 
 collection = mc.db["user_with_uname"]
 

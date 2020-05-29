@@ -4,6 +4,10 @@
 ### Git ###
 *.orig
 .env/
+src/*.session
+.gitignore/
+shivam/
+
 
 
 ### IntelliJ IDEA ###
